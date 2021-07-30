@@ -8,5 +8,5 @@ This application checks if the user defined point belongs to the area (the area 
 - Programming language is Java
 - Application uses JSF 2.0
 - Application uses ICEfaces JSF Framework 4.3.0
-- Database server is PostgreSQL 13, Java DB driver is org.postgresql:postgresql:jar:42.2.20
+- Database server is PostgreSQL 13, JDBC driver is org.postgresql:postgresql:jar:42.2.20
 - Webapp container is Tomcat Embed 8.0.47

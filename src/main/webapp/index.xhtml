@@ -14,7 +14,7 @@
             <table>
                 <tr>
                     <td>
-                        <h3>Иванов Евгений Дмитриевич P3221</h3>
+                        <h3>Иванов Евгений Дмитриевич P3321</h3>
                     </td>
                     <td>
                         <h3>Вариант 12339</h3>
@@ -22,65 +22,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>
-                            <span>X</span>
-                            <h:inputText id="x" value="#{function.x}" style="width:60px;" required="true">
-                                <f:validateDoubleRange minimum="-4" maximum="4"/>
-                            </h:inputText>
-                            <span>Minimum: -4; Maximum: 4</span>
-                        </p>
-                        <p>
-                            <h:message for="x"/>
-                        </p>
-                        <p>
-                            <span>Y</span>
-                            <h:inputText id="y" value="#{function.y}" style="width:60px;" required="true">
-                                <f:validateDoubleRange minimum="-5" maximum="5"/>
-                            </h:inputText>
-                            <span>Minimum: -5; Maximum: 5</span>
-                        </p>
-                        <p>
-                            <h:message for="y"/>
-                        </p>
-                        <p>
-                            <span>R</span>
-                            <h:inputText id="r" value="#{function.r}" style="width:60px;" required="true">
-                                <f:validateDoubleRange minimum="2" maximum="5"/>
-                            </h:inputText>
-                            <span>Minimum: 2; Maximum: 5</span>
-                        </p>
-                        <p>
-                            <h:message for="y"/>
-                        </p>
-                        <p>
-                            <em>Press ENTER to check the point</em>
-                        </p>
-                        <p>
-                            <span>Belongs = </span>
-                            <h:outputText id="point" value="#{function.result}"/>
-                        </p>
-                        <h:messages/>
-                        <ace:graphicImage id="pict" url="figure.png"/>
+                    	<span>Username</span>
+                        <h:inputText />
                     </td>
                     <td>
-                        <ace:dataTable id="table" var="result" value="#{store.data}">
-                            <ace:column headerText="X" value="#{result.x}">
-                                <h:outputText value="#{result.x}"/>
-                            </ace:column>
-                            <ace:column headerText="Y" value="#{result.y}">
-                                <h:outputText value="#{result.y}"/>
-                            </ace:column>
-                            <ace:column headerText="R" value="#{result.r}">
-                                <h:outputText value="#{result.r}"/>
-                            </ace:column>
-                            <ace:column headerText="Result" value="#{result.included}">
-                                <h:outputText value="#{result.included}"/>
-                            </ace:column>
-                        </ace:dataTable>
-                        <h:commandButton value="Clear">
-                            <f:actionListener type="com.s284746.web.faces.event.DataDeleter"/>
-                        </h:commandButton>
-                        <span>Entered data must be correct</span>
+                        <h:commandButton value="Start" />
                     </td>
                 </tr>
             </table>
