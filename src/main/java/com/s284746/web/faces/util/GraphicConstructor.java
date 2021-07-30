@@ -1,11 +1,8 @@
 package com.s284746.web.faces.util;
 
-import com.s284746.web.faces.util.Calculation;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -200,7 +197,6 @@ public class GraphicConstructor {
     }
     public static boolean save(String filename) throws IOException {
         BufferedImage picture = plot(400, 8, 24, new Color(204, 153, 51), 10);
-        ByteArrayOutputStream writer = new ByteArrayOutputStream();
         return ImageIO.write(picture, "PNG", new File("src/main/webapp/"+filename));
     }
 }

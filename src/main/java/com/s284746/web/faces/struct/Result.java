@@ -1,8 +1,11 @@
 package com.s284746.web.faces.struct;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Result implements Serializable {
+	@Serial
+    private static final long serialVersionUID = -1640265211557550086L;
     private double x;
     private double y;
     private double r;

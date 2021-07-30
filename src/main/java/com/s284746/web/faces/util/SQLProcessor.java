@@ -49,6 +49,7 @@ public class SQLProcessor {
             b.append((char)c);
             c = reader.read();
         }
+        reader.close();
         return b.toString();
     }
 

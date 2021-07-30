@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import java.io.*;
 import java.sql.SQLException;
 
+@SuppressWarnings("deprecation") // deprecated classes are required for this task
 @ManagedBean(name = "function")
 @SessionScoped
 public class FunctionBean implements Serializable {

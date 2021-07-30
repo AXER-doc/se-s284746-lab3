@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import java.io.*;
 import java.util.List;
 
+@SuppressWarnings("deprecation") // deprecated classes are required for this task
 @ManagedBean(name = "store")
 @SessionScoped
 public class TableBean implements Serializable {
