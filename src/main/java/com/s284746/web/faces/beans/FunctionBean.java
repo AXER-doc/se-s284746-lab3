@@ -1,5 +1,6 @@
 package com.s284746.web.faces.beans;
 
+import com.s284746.web.faces.event.DataDeleter;
 import com.s284746.web.faces.util.Calculation;
 import com.s284746.web.faces.util.SQLProcessor;
 
@@ -32,7 +33,7 @@ public class FunctionBean implements Serializable {
 
     public boolean getResult() throws SQLException, IOException {
         boolean result = Calculation.belongsToArea(x, y, r);
-        SQLProcessor.saveResult(x, y, r, result);
+        SQLProcessor.saveResult(DataDeleter.userid, x, y, r, result);
         return result;
     }
 

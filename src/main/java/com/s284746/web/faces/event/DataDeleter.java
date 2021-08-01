@@ -1,14 +1,15 @@
 package com.s284746.web.faces.event;
 
-import com.s284746.web.faces.util.SQLProcessor;
-
 import javax.faces.event.*;
 
+import com.s284746.web.faces.util.SQLProcessor;
+
 public class DataDeleter implements ActionListener {
-    @Override
+	public static int userid = 0;
+	@Override
     public void processAction(ActionEvent actionEvent) throws AbortProcessingException {
         try {
-            SQLProcessor.deleteData();
+            SQLProcessor.deleteData(userid);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

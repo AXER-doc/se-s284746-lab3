@@ -29,14 +29,27 @@ public class SQLProcessor {
         }
     }
     
-    public int getUserID(String username) throws SQLException, IOException {
-    	ResultSet resultSet = statement.executeQuery("SELECT ID FROM USERS WHERE NICKNAME = " + username);
-    	if (resultSet.next()) return resultSet.getInt("id");
-    	return 0;
+    public static void initDB() throws SQLException, IOException {
+    	statement.execute(readFile("src/main/resources/init-ddl.sql"));
     }
     
-    public static List<Result> loadDataFromDatabase(int userid) throws SQLException, IOException {
-        statement.execute(readFile("src/main/resources/init-ddl.sql"));
+    public static void dropDB() throws SQLException {
+    	statement.execute("DROP TABLE RESULT_SHEET");
+    	statement.execute("DROP TABLE USERS");
+    }
+    
+    public static int getUserID(String username) throws SQLException {
+    	ResultSet resultSet = statement.executeQuery("SELECT ID FROM USERS WHERE NICKNAME = " + username);
+    	if (resultSet.next()) return resultSet.getInt("id");
+    	resultSet = statement.executeQuery("SELECT COUNT(ID) FROM USERS");
+    	resultSet.next();
+    	int quant = resultSet.getInt(1);
+    	++quant;
+    	statement.execute("INSERT INTO USERS VALUES ("+quant+", "+username+")");
+    	return quant;
+    }
+    
+    public static List<Result> loadDataFromDatabase(int userid) throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM RESULT_SHEET WHERE USER_ID = " + userid);
         List<Result> results = new ArrayList<>();
         while (resultSet.next()) {
@@ -61,13 +74,11 @@ public class SQLProcessor {
         return b.toString();
     }
 
-    public static void saveResult(double x, double y, double r, boolean included) throws SQLException, IOException {
-        statement.execute(readFile("src/main/resources/init-ddl.sql"));
-        statement.execute("INSERT INTO RESULT_SHEET VALUES ("+x+", "+y+", "+r+", "+included+");");
+    public static void saveResult(int userid, double x, double y, double r, boolean included) throws SQLException {
+        statement.execute("INSERT INTO RESULT_SHEET VALUES ("+userid+", "+x+", "+y+", "+r+", "+included+")");
     }
 
-    public static void deleteData() throws SQLException, IOException {
-        statement.execute("DROP TABLE RESULT_SHEET;");
-        statement.execute(readFile("src/main/resources/init-ddl.sql"));
+    public static void deleteData(int userid) throws SQLException {
+        statement.execute("DELETE FROM RESULT_SHEET WHERE USER_ID = " + userid);
     }
 }

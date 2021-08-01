@@ -1,6 +1,8 @@
 package com.s284746.web.faces;
 
 import com.s284746.web.faces.util.GraphicConstructor;
+import com.s284746.web.faces.util.SQLProcessor;
+
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
@@ -30,6 +32,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             GraphicConstructor.save("figure.png");
+            // uncomment if complete database deletion is needed
+            // SQLProcessor.dropDB();
+            SQLProcessor.initDB();
             invokeServer();
         } catch (Exception exception) {
             exception.printStackTrace();
