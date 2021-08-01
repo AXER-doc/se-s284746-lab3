@@ -15,9 +15,12 @@ public class TableBean implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    private String username;
+    private int userid;
+
     public List<Result> getData() {
         try {
-            return SQLProcessor.loadDataFromDatabase();
+            return SQLProcessor.loadDataFromDatabase(0); // TODO: 01/08/2021
         } catch (Exception exception) {
             exception.printStackTrace();
             return null;

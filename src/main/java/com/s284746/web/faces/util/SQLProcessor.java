@@ -17,6 +17,7 @@ public class SQLProcessor {
     private static final String PASSWORD = "boxapp";
     private static final String DATABASE = "webapp3";
     private static Statement statement;
+    
     static {
         try {
             String url = "jdbc:postgresql://" + HOSTNAME + ':' + PORT + '/' + DATABASE;
@@ -27,9 +28,16 @@ public class SQLProcessor {
             exception.printStackTrace();
         }
     }
-    public static List<Result> loadDataFromDatabase() throws SQLException, IOException {
+    
+    public int getUserID(String username) throws SQLException, IOException {
+    	ResultSet resultSet = statement.executeQuery("SELECT ID FROM USERS WHERE NICKNAME = " + username);
+    	if (resultSet.next()) return resultSet.getInt("id");
+    	return 0;
+    }
+    
+    public static List<Result> loadDataFromDatabase(int userid) throws SQLException, IOException {
         statement.execute(readFile("src/main/resources/init-ddl.sql"));
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM RESULT_SHEET");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM RESULT_SHEET WHERE USER_ID = " + userid);
         List<Result> results = new ArrayList<>();
         while (resultSet.next()) {
             double x = resultSet.getDouble("x");
