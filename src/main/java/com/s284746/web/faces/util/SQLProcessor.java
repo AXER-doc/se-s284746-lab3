@@ -39,18 +39,18 @@ public class SQLProcessor {
     }
     
     public static int getUserID(String username) throws SQLException {
-    	ResultSet resultSet = statement.executeQuery("SELECT ID FROM USERS WHERE NICKNAME = " + username);
+    	ResultSet resultSet = statement.executeQuery("SELECT ID FROM USERS WHERE NICKNAME = '" + username +"'");
     	if (resultSet.next()) return resultSet.getInt("id");
     	resultSet = statement.executeQuery("SELECT COUNT(ID) FROM USERS");
     	resultSet.next();
     	int quant = resultSet.getInt(1);
     	++quant;
-    	statement.execute("INSERT INTO USERS VALUES ("+quant+", "+username+")");
+    	statement.execute("INSERT INTO USERS VALUES ("+quant+", '"+username+"')");
     	return quant;
     }
     
     public static List<Result> loadDataFromDatabase(int userid) throws SQLException {
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM RESULT_SHEET WHERE USER_ID = " + userid);
+        ResultSet resultSet = statement.executeQuery("SELECT X, Y, R, INCLUDED FROM RESULT_SHEET WHERE USER_ID = " + userid);
         List<Result> results = new ArrayList<>();
         while (resultSet.next()) {
             double x = resultSet.getDouble("x");

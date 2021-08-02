@@ -7,7 +7,7 @@
       xmlns:ace="http://www.icefaces.org/icefaces/components"
       xmlns:icecore="http://www.icefaces.org/icefaces/core">
     <h:head>
-        <title>WEBAPP powered by JSF v2.1</title>
+        <title>WEBAPP powered by JSF v2.2</title>
     </h:head>
     <h:body>
         <h:form id="application">
@@ -63,6 +63,14 @@
                         <ace:graphicImage id="pict" url="figure.png"/>
                     </td>
                     <td>
+                    	<p>
+                    		<span>User nickname: </span>
+                    		<h:outputText value="#{store.userName}" />
+                    	</p>
+                    	<p>
+                    		<span>User ID: </span>
+                    		<h:outputText value="#{store.userID}" />
+                    	</p>
                         <ace:dataTable id="table" var="result" value="#{store.data}">
                             <ace:column headerText="X" value="#{result.x}">
                                 <h:outputText value="#{result.x}"/>
