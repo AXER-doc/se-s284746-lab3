@@ -1,7 +1,7 @@
 # se-s284746-lab3
 This is a deployed Lab 3 on Software Engineering
 ## Author
-P3321 Evgeny Ivanov @AXER-doc
+P33212 Evgeny Ivanov @AXER-doc
 ## High-Level Overview
 This application checks if the user defined point belongs to the area (the area is visualized in the picture on the app interface) and saves results to PostgreSQL database.
 ## Details
