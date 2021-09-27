@@ -41,6 +41,10 @@ public class Main {
         }
         tomcat.stop();
     }
+    /**
+     * Тестировать проверку вхождения точки в область (инструкция в лекциях)
+     * Написать Javadoc к классам и методам и упаковать вместе с классами
+     */
     public static void main(String[] args) {
         try {
             GraphicConstructor.save("figure.png");
