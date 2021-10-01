@@ -24,7 +24,13 @@
         	</classpath>
         </javac>
     </target>
-	<target name="build" depends="compile">
+	<target name="test" depends="compile">
+		<junitlauncher>
+			<classpath refid="main.classpath"/>
+			<test name="com.s284746.web.faces.test.CalculationTest"/>
+		</junitlauncher>
+	</target>
+	<target name="build" depends="test">
 	    <mkdir dir="${jar.dir}"/>
 	    <jar destfile="${jar.file-path}" basedir="${classes.dir}">
 	        <manifest>
