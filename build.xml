@@ -1,38 +1,70 @@
 <?xml version="1.0"?>
 <project name="Lab3" default="run">
 	<property name="src.dir" location="src"/>
+	<property name="src.main.dir" location="${src.dir}/main/java"/>
+	<property name="src.test.dir" location="${src.dir}/test/java"/>
 	<property name="build.dir" location="build"/>
-	<property name="classes.dir" location="${build.dir}/classes"/>
+	<property name="main.classes.dir" location="${build.dir}/main"/>
+	<property name="test.classes.dir" location="${build.dir}/test"/>
 	<property name="jar.dir" location="${build.dir}/jar"/>
 	<property name="lib.dir" location="lib"/>
+	<property name="output.dir" location="${build.dir}/test-report"/>
 	<property name="jar.file-path" location="${jar.dir}/${ant.project.name}.jar"/>
 	<property name="main-class" value="com.s284746.web.faces.Main"/>
 	<target name="clean">
 	    <delete dir="${build.dir}"/>
 	</target>
-    <target name="compile" depends="clean">
-    	<mkdir dir="${classes.dir}"/>
-    	<unjar dest="${classes.dir}">
+	<target name="init">
+        <mkdir dir="${main.classes.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${output.dir}"/>
+    </target>
+	<target name="compile" depends="init">
+        <javac destdir="${main.classes.dir}" classpathref="lib.classpath" srcdir="${src.main.dir}" includeantruntime="false"/>
+        <javac destdir="${test.classes.dir}" includeantruntime="false">
+			<src path="${src.test.dir}"/>
+			<classpath>
+				<path refid="main.classpath"/>
+				<path refid="test.classpath"/>
+				<path refid="lib.classpath"/>
+			</classpath>
+		</javac>
+    </target>
+	<target name="test.junit.launcher" depends="compile">
+        <junitlauncher haltOnFailure="true" printSummary="true">
+            <classpath refid="test.classpath"/>
+            <testclasses outputdir="${output.dir}">
+                <fileset dir="${test.classes.dir}">
+                    <include name="**/*.class"/>
+                </fileset>
+                <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
+                <listener type="legacy-plain" sendSysOut="true" />
+            </testclasses>
+        </junitlauncher>
+    </target>
+	<target name="test.console.launcher" depends="compile">
+        <java classpathref="test.classpath" classname="org.junit.platform.console.ConsoleLauncher" fork="true" failonerror="true">
+            <arg value="--scan-classpath"/>
+            <arg line="--reports-dir ${output.dir}"/>
+        </java>
+        <junitreport todir="${output.dir}">
+            <fileset dir="${output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${output.dir}/html"/>
+        </junitreport>
+    </target>
+	<target name="test" depends="test.junit.launcher, test.console.launcher"/>
+	<target name="pack" depends="test">
+		<unjar dest="${main.classes.dir}">
 			<path refid="lib.classpath"/>
 		</unjar>
-    	<delete dir="${classes.dir}/META-INF"/>
-    	<delete file="${classes.dir}/module-info.class"/>
-    	<javac destdir="${classes.dir}" includeantruntime="false">
-            <src path="${src.dir}"/>
-        	<classpath>
-        		<path refid="main.classpath"/>
-        	</classpath>
-        </javac>
-    </target>
-	<target name="test" depends="compile">
-		<junitlauncher>
-			<classpath refid="main.classpath"/>
-			<test name="com.s284746.web.faces.test.CalculationTest"/>
-		</junitlauncher>
+		<delete dir="${main.classes.dir}/META-INF"/>
+		<delete file="${main.classes.dir}/module-info.class"/>
 	</target>
-	<target name="build" depends="test">
+	<target name="build" depends="pack">
 	    <mkdir dir="${jar.dir}"/>
-	    <jar destfile="${jar.file-path}" basedir="${classes.dir}">
+	    <jar destfile="${jar.file-path}" basedir="${main.classes.dir}">
 	        <manifest>
 	            <attribute name="Main-Class" value="${main-class}"/>
 	        </manifest>
@@ -42,7 +74,12 @@
 	    <java jar="${jar.file-path}" fork="true"/>
 	</target>
 	<path id="main.classpath">
-		<fileset dir="${classes.dir}">
+		<fileset dir="${main.classes.dir}">
+			<include name="*.class"/>
+		</fileset>
+	</path>
+	<path id="test.classpath">
+		<fileset dir="${test.classes.dir}">
 			<include name="*.class"/>
 		</fileset>
 	</path>
