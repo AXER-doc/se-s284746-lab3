@@ -14,19 +14,32 @@
 	<target name="clean">
 	    <delete dir="${build.dir}"/>
 	</target>
-	<target name="init">
+	<target name="init" depends="clean">
         <mkdir dir="${main.classes.dir}"/>
         <mkdir dir="${test.classes.dir}"/>
         <mkdir dir="${output.dir}"/>
     </target>
-	<target name="compile" depends="init">
-        <javac destdir="${main.classes.dir}" classpathref="lib.classpath" srcdir="${src.main.dir}" includeantruntime="false"/>
+	<target name="unpack" depends="init">
+		<unjar dest="${main.classes.dir}">
+			<path refid="lib.classpath"/>
+		</unjar>
+		<delete dir="${main.classes.dir}/META-INF"/>
+		<delete file="${main.classes.dir}/module-info.class"/>
+	</target>
+	<target name="compile" depends="unpack">
+        <javac destdir="${main.classes.dir}" includeantruntime="false">
+			<src path="${src.main.dir}"/>
+        	<classpath>
+        		<path refid="main.classpath"/>
+        	</classpath>
+        </javac>
+		<copy todir="${src.test.dir}">
+			<path refid="main.classpath"/>
+		</copy>
         <javac destdir="${test.classes.dir}" includeantruntime="false">
 			<src path="${src.test.dir}"/>
 			<classpath>
-				<path refid="main.classpath"/>
 				<path refid="test.classpath"/>
-				<path refid="lib.classpath"/>
 			</classpath>
 		</javac>
     </target>
@@ -55,14 +68,7 @@
         </junitreport>
     </target>
 	<target name="test" depends="test.junit.launcher, test.console.launcher"/>
-	<target name="pack" depends="test">
-		<unjar dest="${main.classes.dir}">
-			<path refid="lib.classpath"/>
-		</unjar>
-		<delete dir="${main.classes.dir}/META-INF"/>
-		<delete file="${main.classes.dir}/module-info.class"/>
-	</target>
-	<target name="build" depends="pack">
+	<target name="build" depends="test">
 	    <mkdir dir="${jar.dir}"/>
 	    <jar destfile="${jar.file-path}" basedir="${main.classes.dir}">
 	        <manifest>
