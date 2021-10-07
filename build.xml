@@ -33,8 +33,10 @@
         		<path refid="main.classpath"/>
         	</classpath>
         </javac>
-		<copy todir="${src.test.dir}">
-			<path refid="main.classpath"/>
+		<copy todir="${test.classes.dir}">
+			<fileset dir="${main.classes.dir}">
+				<include name="**/*.class"/>
+			</fileset>
 		</copy>
         <javac destdir="${test.classes.dir}" includeantruntime="false">
 			<src path="${src.test.dir}"/>
@@ -48,7 +50,7 @@
             <classpath refid="test.classpath"/>
             <testclasses outputdir="${output.dir}">
                 <fileset dir="${test.classes.dir}">
-                    <include name="**/*.class"/>
+                    <include name="**/*Tests.class"/>
                 </fileset>
                 <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true" />

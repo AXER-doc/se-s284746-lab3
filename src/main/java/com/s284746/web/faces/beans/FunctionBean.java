@@ -13,39 +13,39 @@ import java.sql.SQLException;
 @ManagedBean(name = "function")
 @SessionScoped
 public class FunctionBean implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private double x;
-    private double y;
-    private double r;
+	@Serial
+	private static final long serialVersionUID = 1L;
+	private double x;
+	private double y;
+	private double r;
 
-    public double getX() {
-        return x;
-    }
+	public double getX() {
+		return x;
+	}
 
-    public double getY() {
-        return y;
-    }
+	public double getY() {
+		return y;
+	}
 
-    public double getR() {
-        return r;
-    }
+	public double getR() {
+		return r;
+	}
 
-    public boolean getResult() throws SQLException, IOException {
-        boolean result = Calculation.belongsToArea(x, y, r);
-        SQLProcessor.saveResult(DataDeleter.userid, x, y, r, result);
-        return result;
-    }
+	public boolean getResult() throws SQLException, IOException {
+		boolean result = Calculation.belongsToArea(x, y, r);
+		SQLProcessor.saveResult(DataDeleter.userid, x, y, r, result);
+		return result;
+	}
 
-    public void setX(double val) {
-        x = val;
-    }
+	public void setX(double val) {
+		x = val;
+	}
 
-    public void setY(double val) {
-        y = val;
-    }
+	public void setY(double val) {
+		y = val;
+	}
 
-    public void setR(double val) {
-        r = val;
-    }
+	public void setR(double val) {
+		r = val;
+	}
 }

@@ -14,32 +14,32 @@ import java.util.List;
 @ManagedBean(name = "store")
 @SessionScoped
 public class TableBean implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 1L;
 
-    private String userName;
-    private int userID;
+	private String userName;
+	private int userID;
 
-    public int getUserID() {
-    	return userID;
-    }
-    
-    public String getUserName() {
-    	return userName;
-    }
-    
-    public void setUserName(String name) throws SQLException {
-    	userName = name;
-    	userID = SQLProcessor.getUserID(name);
-    	DataDeleter.userid = userID;
-    }
-    
-    public List<Result> getData() {
-        try {
-            return SQLProcessor.loadDataFromDatabase(userID);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return null;
-        }
-    }
+	public int getUserID() {
+		return userID;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String name) throws SQLException {
+		userName = name;
+		userID = SQLProcessor.getUserID(name);
+		DataDeleter.userid = userID;
+	}
+
+	public List<Result> getData() {
+		try {
+			return SQLProcessor.loadDataFromDatabase(userID);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
+	}
 }
