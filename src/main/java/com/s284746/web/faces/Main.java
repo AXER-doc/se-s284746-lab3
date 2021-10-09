@@ -21,7 +21,7 @@ public class Main {
 		StandardContext context = (StandardContext) tomcat.addWebapp("", new File("webapp").getAbsolutePath());
 		WebResourceRoot resourceRoot = new StandardRoot(context);
 		resourceRoot.addPreResources(
-				new DirResourceSet(resourceRoot, "/WEB-INF/classes", new File("build/classes").getAbsolutePath(), "/"));
+				new DirResourceSet(resourceRoot, "/WEB-INF/classes", new File("build/main").getAbsolutePath(), "/"));
 		context.setResources(resourceRoot);
 		tomcat.start();
 		time = System.currentTimeMillis() - time;

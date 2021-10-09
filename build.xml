@@ -45,31 +45,14 @@
 			</classpath>
 		</javac>
     </target>
-	<target name="test.junit.launcher" depends="compile">
-        <junitlauncher haltOnFailure="true" printSummary="true">
-            <classpath refid="test.classpath"/>
-            <testclasses outputdir="${output.dir}">
-                <fileset dir="${test.classes.dir}">
-                    <include name="**/*Tests.class"/>
-                </fileset>
-                <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
-                <listener type="legacy-plain" sendSysOut="true" />
-            </testclasses>
-        </junitlauncher>
+	<target name="test" depends="compile">
+		<junit haltonfailure="true" printsummary="withOutAndErr" fork="no">
+			<sysproperty key="basedir" value="${basedir}"/>
+			<classpath refid="lib.classpath"/>
+			<classpath refid="test.classpath"/>
+			<test name="com.s284746.web.faces.test.CalculationTests"/>
+		</junit>
     </target>
-	<target name="test.console.launcher" depends="compile">
-        <java classpathref="test.classpath" classname="org.junit.platform.console.ConsoleLauncher" fork="true" failonerror="true">
-            <arg value="--scan-classpath"/>
-            <arg line="--reports-dir ${output.dir}"/>
-        </java>
-        <junitreport todir="${output.dir}">
-            <fileset dir="${output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${output.dir}/html"/>
-        </junitreport>
-    </target>
-	<target name="test" depends="test.junit.launcher, test.console.launcher"/>
 	<target name="build" depends="test">
 	    <mkdir dir="${jar.dir}"/>
 	    <jar destfile="${jar.file-path}" basedir="${main.classes.dir}">
