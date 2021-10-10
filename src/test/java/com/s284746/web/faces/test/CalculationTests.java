@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class CalculationTests {
-	/*
 	@Test
 	public void testFunctionOnRadius1() {
 		Assertions.assertTrue(Calculation.belongsToArea(-1, 0, 1));
@@ -84,5 +83,4 @@ public class CalculationTests {
 	public void testFunctionOnZeroRadius() {
 		// create tests
 	}
-	*/
 }

@@ -70,6 +70,8 @@
 		<unjar dest="${main.classes.dir}">
 			<path refid="lib.classpath"/>
 		</unjar>
+		<delete dir="${main.classes.dir}/META-INF"/>
+		<delete file="${main.classes.dir}/module-info.class"/>
 	</target>
 	<target name="build" depends="unpack">
 	    <mkdir dir="${jar.dir}"/>
