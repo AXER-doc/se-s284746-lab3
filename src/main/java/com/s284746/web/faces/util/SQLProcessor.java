@@ -1,7 +1,7 @@
 package com.s284746.web.faces.util;
 
 import com.s284746.web.faces.struct.Result;
-import org.postgresql.Driver;
+import org.hsqldb.jdbc.JDBCDriver;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,18 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLProcessor {
-	private static final String HOSTNAME = "localhost";
-	private static final int PORT = 5432;
-	private static final String USERNAME = "postgres";
-	private static final String PASSWORD = "boxapp";
 	private static final String DATABASE = "webapp3";
 	private static Statement statement;
 
 	static {
 		try {
-			String url = "jdbc:postgresql://" + HOSTNAME + ':' + PORT + '/' + DATABASE;
-			DriverManager.registerDriver(new Driver());
-			Connection connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			String url = "jdbc:hsqldb:file:" + DATABASE + ";hsqldb.lock_file=false";
+			DriverManager.registerDriver(new JDBCDriver());
+			Connection connection = DriverManager.getConnection(url);
 			statement = connection.createStatement();
 		} catch (Exception exception) {
 			exception.printStackTrace();
@@ -30,7 +26,7 @@ public class SQLProcessor {
 	}
 
 	public static void initDB() throws SQLException, IOException {
-		statement.execute(readFile("resources/init-ddl.sql"));
+		statement.execute(readFile("src/main/resources/init-ddl.sql"));
 	}
 
 	public static void dropDB() throws SQLException {
