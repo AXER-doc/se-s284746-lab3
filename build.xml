@@ -7,8 +7,8 @@
 	<property name="main.classes.dir" location="${build.dir}/main"/>
 	<property name="test.classes.dir" location="${build.dir}/test"/>
 	<property name="jar.dir" location="${build.dir}/jar"/>
-	<property name="lib.dir" location="lib"/>
-	<property name="output.dir" location="${build.dir}/test-report"/>
+	<property name="main.lib.dir" location="${src.dir}/main/lib"/>
+	<property name="test.lib.dir" location="${src.dir}/test/lib"/>
 	<property name="jar.file-path" location="${jar.dir}/${ant.project.name}.jar"/>
 	<property name="main-class" value="com.s284746.web.faces.Main"/>
 	<path id="main.classpath">
@@ -21,8 +21,13 @@
 			<include name="**/*.class"/>
 		</fileset>
 	</path>
-	<path id="lib.classpath">
-		<fileset dir="${lib.dir}">
+	<path id="main.lib.classpath">
+		<fileset dir="${main.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<path id="test.lib.classpath">
+		<fileset dir="${test.lib.dir}">
 			<include name="*.jar"/>
 		</fileset>
 	</path>
@@ -32,30 +37,27 @@
 	<target name="init" depends="clean">
         <mkdir dir="${main.classes.dir}"/>
         <mkdir dir="${test.classes.dir}"/>
-        <mkdir dir="${output.dir}"/>
     </target>
 	<target name="compile" depends="init">
-		<echo level="info">Build java classes</echo>
 		<javac destdir="${main.classes.dir}" includeantruntime="false" target="11" source="11" verbose="true">
 			<src path="${src.main.dir}"/>
 			<classpath>
 				<pathelement location="${main.classes.dir}"/>
-				<path refid="lib.classpath"/>
+				<path refid="main.lib.classpath"/>
 			</classpath>
 		</javac>
-		<echo level="info">Build test classes</echo>
 		<javac destdir="${test.classes.dir}" includeantruntime="false" target="11" source="11" verbose="true">
 			<src path="${src.test.dir}"/>
 			<classpath>
 				<pathelement location="${main.classes.dir}"/>
-				<path refid="lib.classpath"/>
+				<path refid="test.lib.classpath"/>
 			</classpath>
 		</javac>
 	</target>
 	<target name="test" depends="compile">
 		<junitlauncher printsummary="true" haltonfailure="true">
 			<classpath>
-				<path refid="lib.classpath"/>
+				<path refid="test.lib.classpath"/>
 				<pathelement location="${main.classes.dir}"/>
 				<pathelement location="${test.classes.dir}"/>
 			</classpath>
@@ -68,7 +70,7 @@
 	</target>
 	<target name="unpack" depends="test">
 		<unjar dest="${main.classes.dir}">
-			<path refid="lib.classpath"/>
+			<path refid="main.lib.classpath"/>
 		</unjar>
 		<delete dir="${main.classes.dir}/META-INF"/>
 		<delete file="${main.classes.dir}/module-info.class"/>
