@@ -4,6 +4,9 @@ import javax.faces.event.*;
 
 import com.s284746.web.faces.util.SQLProcessor;
 
+/**
+ * todo comment
+ */
 public class DataDeleter implements ActionListener {
 	public static int userid = 0;
 
