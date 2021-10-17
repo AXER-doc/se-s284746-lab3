@@ -9,7 +9,7 @@
 	<property name="jar.dir" location="${build.dir}/jar"/>
 	<property name="main.lib.dir" location="${src.dir}/main/lib"/>
 	<property name="test.lib.dir" location="${src.dir}/test/lib"/>
-	<property name="javadoc.dir" location="${build.dir}.javadoc"/>
+	<property name="javadoc.dir" location="${build.dir}/javadoc"/>
 	<property name="jar.file-path" location="${jar.dir}/${ant.project.name}.jar"/>
 	<property name="main-class" value="com.s284746.web.faces.Main"/>
 	<path id="main.classpath">
@@ -89,11 +89,14 @@
 	    <java jar="${jar.file-path}" fork="true"/>
 	</target>
 	-->
-	<target name="doc" depends="build">
-		<javadoc classpathref="main.classpath" destdir="${javadoc.dir}" useexternalfile="yes">
-			<fileset dir="${src.main.dir}">
-				<include name="**/*.java"/>
-			</fileset>
+	<target name="doc" depends="compile">
+		<javadoc destdir="${javadoc.dir}" useexternalfile="yes">
+			<sourcepath>
+				<pathelement location="${src.main.dir}"/>
+			</sourcepath>
+			<classpath>
+				<path refid="main.lib.classpath"/>
+			</classpath>
 		</javadoc>
 	</target>
 </project>
