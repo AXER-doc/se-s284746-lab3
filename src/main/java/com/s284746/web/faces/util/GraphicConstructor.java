@@ -6,15 +6,29 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class for plotting area shape.
+ */
 public class GraphicConstructor {
+	/**
+	 * Different modes of specifying object location: by left side, center or right side.
+	 */
 	private enum XMode {
 		LEFT, CENTER, RIGHT
 	}
 
+	/**
+	 * Different modes of specifying object location: by top, middle or bottom.
+	 */
 	private enum YMode {
 		TOP, MIDDLE, BOTTOM
 	}
 
+	/**
+	 * Filling an image with a color.
+	 * @param image image to fill
+	 * @param color filling color
+	 */
 	private static void background(BufferedImage image, Color color) {
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -25,6 +39,14 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts a right arrow into an image.
+	 * @param image image
+	 * @param lx left coordinate X
+	 * @param rx right coordinate Y
+	 * @param y coordinate Y
+	 * @param color arrow color
+	 */
 	private static void rightArrow(BufferedImage image, int lx, int rx, int y, Color color) {
 		for (int i = lx; i <= rx; ++i) {
 			image.setRGB(i, y, color.getRGB());
@@ -35,6 +57,14 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts an up arrow into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param hy upper coordinate Y
+	 * @param ly lower coordinate Y
+	 * @param color arrow color
+	 */
 	private static void upArrow(BufferedImage image, int x, int hy, int ly, Color color) {
 		for (int i = hy; i <= ly; ++i) {
 			image.setRGB(x, i, color.getRGB());
@@ -45,18 +75,43 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Draws one pixel at (X,Y), one on left of it and one on right of it.
+	 * Used as stroke on vertical line.
+	 * @param image image
+	 * @param cx central coordinate X
+	 * @param y coordinate Y
+	 * @param color stroke color
+	 */
 	private static void horizontalStroke(BufferedImage image, int cx, int y, Color color) {
 		image.setRGB(cx - 1, y, color.getRGB());
 		image.setRGB(cx, y, color.getRGB());
 		image.setRGB(cx + 1, y, color.getRGB());
 	}
 
+	/**
+	 * Draws on pixel at (X,Y), one above it and one below it.
+	 * Used as stroke on horizontal line.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param cy coordinate Y
+	 * @param color stroke color
+	 */
 	private static void verticalStroke(BufferedImage image, int x, int cy, Color color) {
 		image.setRGB(x, cy - 1, color.getRGB());
 		image.setRGB(x, cy, color.getRGB());
 		image.setRGB(x, cy + 1, color.getRGB());
 	}
 
+	/**
+	 * Puts an X stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void xStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 2;
@@ -67,6 +122,15 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts an Y stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void yStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 2;
@@ -80,6 +144,15 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts an R stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void rStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 2;
@@ -98,6 +171,14 @@ public class GraphicConstructor {
 		image.setRGB(newX + 4, newY + 8, color.getRGB());
 	}
 
+	/**
+	 * Puts a - stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param color stamp color
+	 */
 	private static void minusStamp(BufferedImage image, int x, XMode xMode, int y, Color color) {
 		int newX;
 		newX = x - xMode.ordinal() * 2;
@@ -106,6 +187,15 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts a -R stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void minusRStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 5;
@@ -114,6 +204,15 @@ public class GraphicConstructor {
 		rStamp(image, newX + 6, XMode.LEFT, newY, YMode.TOP, color);
 	}
 
+	/**
+	 * Puts a 2 stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void twoStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 2;
@@ -131,6 +230,15 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts an R/2 stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void halfRStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 3;
@@ -142,6 +250,15 @@ public class GraphicConstructor {
 		twoStamp(image, newX + 1, XMode.LEFT, newY + 12, YMode.TOP, color);
 	}
 
+	/**
+	 * Puts a -R/2 stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void minusHalfRStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 6;
@@ -150,6 +267,15 @@ public class GraphicConstructor {
 		halfRStamp(image, newX + 6, XMode.LEFT, newY, YMode.TOP, color);
 	}
 
+	/**
+	 * Puts a 0 stamp into an image.
+	 * @param image image
+	 * @param x coordinate X
+	 * @param xMode X locating method
+	 * @param y coordinate Y
+	 * @param yMode Y locating method
+	 * @param color stamp color
+	 */
 	private static void zeroStamp(BufferedImage image, int x, XMode xMode, int y, YMode yMode, Color color) {
 		int newX, newY;
 		newX = x - xMode.ordinal() * 2;
@@ -164,6 +290,14 @@ public class GraphicConstructor {
 		}
 	}
 
+	/**
+	 * Puts strokes and stamps into an image.
+	 * @param image image to fill
+	 * @param min pixel coordinate of minimum
+	 * @param center pixel coordinate of center
+	 * @param max pixel coordinate of maximum
+	 * @param color stroke color
+	 */
 	private static void graduate(BufferedImage image, int min, int center, int max, Color color) {
 		horizontalStroke(image, center, min, color);
 		rStamp(image, center + 8, XMode.LEFT, min, YMode.MIDDLE, color);
@@ -183,6 +317,15 @@ public class GraphicConstructor {
 		rStamp(image, max, XMode.CENTER, center + 8, YMode.TOP, color);
 	}
 
+	/**
+	 * Plots an area shape.
+	 * @param size pixel size (width and height) of the picture
+	 * @param margin number of pixels beyond arrows ends on each side
+	 * @param padding number of pixels inside arrow borders but outside the graph on each side
+	 * @param color area filling color
+	 * @param r parameter R
+	 * @return resulting image
+	 */
 	private static BufferedImage plot(int size, int margin, int padding, Color color, double r) {
 		BufferedImage picture = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
 		background(picture, Color.WHITE);
@@ -210,6 +353,12 @@ public class GraphicConstructor {
 		return picture;
 	}
 
+	/**
+	 * Saving the image as PNG file.
+	 * @param filename name of the file without <code>.png</code> extension
+	 * @return success flag (saved or not)
+	 * @throws IOException if creating the file fails
+	 */
 	public static boolean save(String filename) throws IOException {
 		BufferedImage picture = plot(400, 8, 24, new Color(204, 153, 51), 10);
 		return ImageIO.write(picture, "PNG", new File("webapp/" + filename));

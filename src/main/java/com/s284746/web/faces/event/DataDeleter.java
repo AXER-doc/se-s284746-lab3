@@ -5,13 +5,13 @@ import javax.faces.event.*;
 import com.s284746.web.faces.util.SQLProcessor;
 
 /**
- * Class for performing data deletion when 'Clear' button is pressed
+ * Class for performing data deletion when 'Clear' button is pressed.
  */
 public class DataDeleter implements ActionListener {
 	public static int userid = 0;
 
 	/**
-	 * Catches a click and invokes process
+	 * Catches a click and invokes process.
 	 * @param actionEvent click event as object
 	 * @throws AbortProcessingException if something is wrong
 	 */

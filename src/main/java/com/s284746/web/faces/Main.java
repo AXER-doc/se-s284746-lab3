@@ -13,7 +13,18 @@ import javax.servlet.ServletException;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Main class of the application.
+ * Contains <code>main</code> method.
+ */
 public class Main {
+	/**
+	 * Starts the server.
+	 * Stops the server when user enters anything (types anything and presses Enter/Return) to the console.
+	 * @throws ServletException if server doesn't start, or if it doesn't stop
+	 * @throws LifecycleException if error occurs within server lifecycle
+	 * @throws IOException if <code>webapp</code> folder contents reading fails
+	 */
 	private static void invokeServer() throws ServletException, LifecycleException, IOException {
 		long time = System.currentTimeMillis();
 		Tomcat tomcat = new Tomcat();
@@ -44,10 +55,9 @@ public class Main {
 	}
 
 	/**
-	 * Тестировать проверку вхождения точки в
-	 * область (инструкция в лекциях) Написать
-	 * Javadoc к классам и методам и упаковать
-	 * вместе с классами
+	 * Main method of the application.
+	 * Creates a graph image, connects to the database (or creates new) and invokes a server.
+	 * @param args command line arguments (not used in the method)
 	 */
 	public static void main(String[] args) {
 		try {

@@ -4,7 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * Structured result of checking the point
+ * Structured result of checking the point.
  */
 public class Result implements Serializable {
 	@Serial
@@ -15,7 +15,7 @@ public class Result implements Serializable {
 	private boolean included;
 
 	/**
-	 * Creates an instance of Result filled with accepted parameters
+	 * Creates an instance of Result filled with accepted parameters.
 	 * @param x coordinate X
 	 * @param y coordinate Y
 	 * @param r parameter R
@@ -29,7 +29,7 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Getter for parameter X
+	 * Getter for parameter X.
 	 * @return value of X
 	 */
 	public double getX() {
@@ -37,7 +37,7 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Getter for parameter Y
+	 * Getter for parameter Y.
 	 * @return value of Y
 	 */
 	public double getY() {
@@ -45,7 +45,7 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Getter for parameter R
+	 * Getter for parameter R.
 	 * @return value of R
 	 */
 	public double getR() {
@@ -53,7 +53,7 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Getter for flag Included
+	 * Getter for flag Included.
 	 * @return value of Included
 	 */
 	public boolean isIncluded() {
@@ -61,8 +61,8 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Setter for parameter X
-	 * Assigns accepted value <code>x</code> to <code>x</code> field
+	 * Setter for parameter X.
+	 * Assigns accepted value <code>x</code> to <code>x</code> field.
 	 * @param x new value of X
 	 */
 	public void setX(double x) {
@@ -70,8 +70,8 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Setter for parameter Y
-	 * Assigns accepted value <code>y</code> to <code>y</code> field
+	 * Setter for parameter Y.
+	 * Assigns accepted value <code>y</code> to <code>y</code> field.
 	 * @param y new value of Y
 	 */
 	public void setY(double y) {
@@ -79,8 +79,8 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Setter for parameter R
-	 * Assigns accepted value <code>r</code> to <code>r</code> field
+	 * Setter for parameter R.
+	 * Assigns accepted value <code>r</code> to <code>r</code> field.
 	 * @param r new value of R
 	 */
 	public void setR(double r) {
@@ -88,8 +88,8 @@ public class Result implements Serializable {
 	}
 
 	/**
-	 * Setter for flag Included
-	 * Assigns accepted value of <code>included</code> to <code>included</code> field
+	 * Setter for flag Included.
+	 * Assigns accepted value of <code>included</code> to <code>included</code> field.
 	 * @param included new value of Included
 	 */
 	public void setIncluded(boolean included) {

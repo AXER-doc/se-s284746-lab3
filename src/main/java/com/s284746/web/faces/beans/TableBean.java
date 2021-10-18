@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Class for table visualization
+ * Class for table visualization.
  */
 @SuppressWarnings("deprecation") // deprecated classes are required for this task
 @ManagedBean(name = "store")
@@ -24,7 +24,7 @@ public class TableBean implements Serializable {
 	private int userID;
 
 	/**
-	 * Getter for parameter userID
+	 * Getter for parameter userID.
 	 * @return value of userID
 	 */
 	public int getUserID() {
@@ -32,7 +32,7 @@ public class TableBean implements Serializable {
 	}
 
 	/**
-	 * Getter for parameter userName
+	 * Getter for parameter userName.
 	 * @return value of userName
 	 */
 	public String getUserName() {
@@ -40,10 +40,10 @@ public class TableBean implements Serializable {
 	}
 
 	/**
-	 * Setter for parameters userName and userID
-	 * Assigns <code>name</code> to <code>username</code> field
-	 * Retrieves ID of the user from database (if the user doesn't exist, creates new ID)
-	 * Assigns retrieved user ID to <code>userID</code> field
+	 * Setter for parameters userName and userID.
+	 * Assigns <code>name</code> to <code>username</code> field.
+	 * Retrieves ID of the user from database (if the user doesn't exist, creates new ID).
+	 * Assigns retrieved user ID to <code>userID</code> field.
 	 * @param name username entered by user
 	 * @throws SQLException if database reading fails
 	 */
@@ -54,8 +54,8 @@ public class TableBean implements Serializable {
 	}
 
 	/**
-	 * Loads results from database and saves them as list
-	 * Thrown exceptions are caught and printed to System.out
+	 * Loads results from database and saves them as list.
+	 * Thrown exceptions are caught and printed to <code>System.out</code>.
 	 * @return list of structured results
 	 */
 	public List<Result> getData() {

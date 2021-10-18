@@ -10,7 +10,7 @@ import java.io.*;
 import java.sql.SQLException;
 
 /**
- * Class for evaluation result of the function
+ * Class for evaluation result of the function.
  */
 @SuppressWarnings("deprecation") // deprecated classes are required for this task
 @ManagedBean(name = "function")
@@ -23,7 +23,7 @@ public class FunctionBean implements Serializable {
 	private double r;
 
 	/**
-	 * Getter for parameter X
+	 * Getter for parameter X.
 	 * @return value of X
 	 */
 	public double getX() {
@@ -31,7 +31,7 @@ public class FunctionBean implements Serializable {
 	}
 
 	/**
-	 * Getter for parameter Y
+	 * Getter for parameter Y.
 	 * @return value of Y
 	 */
 	public double getY() {
@@ -39,7 +39,7 @@ public class FunctionBean implements Serializable {
 	}
 
 	/**
-	 * Getter for parameter R
+	 * Getter for parameter R.
 	 * @return value of R
 	 */
 	public double getR() {
@@ -47,7 +47,7 @@ public class FunctionBean implements Serializable {
 	}
 
 	/**
-	 * The method which implements the target function and saves result of its evaluation
+	 * The method which implements the target function and saves result of its evaluation.
 	 * @return result of the function (true or false)
 	 * @throws SQLException if result saving fails
 	 */
@@ -58,8 +58,8 @@ public class FunctionBean implements Serializable {
 	}
 
 	/**
-	 * Setter for parameter X
-	 * Assigns accepted value of <code>val</code> to <code>x</code> field
+	 * Setter for parameter X.
+	 * Assigns accepted value of <code>val</code> to <code>x</code> field.
 	 * @param val new X value
 	 */
 	public void setX(double val) {
@@ -67,8 +67,8 @@ public class FunctionBean implements Serializable {
 	}
 
 	/**
-	 * Setter for parameter Y
-	 * Assigns accepted value of <code>val</code> to <code>y</code> field
+	 * Setter for parameter Y.
+	 * Assigns accepted value of <code>val</code> to <code>y</code> field.
 	 * @param val new Y value
 	 */
 	public void setY(double val) {
@@ -76,8 +76,8 @@ public class FunctionBean implements Serializable {
 	}
 
 	/**
-	 * Setter for parameter R
-	 * Assigns accepted value of <code>val</code> to <code>r</code> field
+	 * Setter for parameter R.
+	 * Assigns accepted value of <code>val</code> to <code>r</code> field.
 	 * @param val new R value
 	 */
 	public void setR(double val) {

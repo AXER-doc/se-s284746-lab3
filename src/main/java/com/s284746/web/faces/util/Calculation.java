@@ -1,11 +1,11 @@
 package com.s284746.web.faces.util;
 
 /**
- * Class with utilities for functional and graphic calculations
+ * Class with utilities for functional and graphic calculations.
  */
 public class Calculation {
 	/**
-	 * Checks if the point (x,y) belongs to the rectangle with parameter R
+	 * Checks if the point (x,y) belongs to the rectangle with parameter R.
 	 * @param x coordinate X
 	 * @param y coordinate Y
 	 * @param r parameter R
@@ -16,7 +16,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Checks if the point (x,y) belongs to the sector with parameter R
+	 * Checks if the point (x,y) belongs to the sector with parameter R.
 	 * @param x coordinate X
 	 * @param y coordinate Y
 	 * @param r parameter R
@@ -27,7 +27,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Checks if the point (x,y) belongs to the triangle with parameter R
+	 * Checks if the point (x,y) belongs to the triangle with parameter R.
 	 * @param x coordinate X
 	 * @param y coordinate Y
 	 * @param r parameter R
@@ -38,7 +38,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Checks if the point (x,y) belongs to the area (sector, triangle or rectangle) with parameter R
+	 * Checks if the point (x,y) belongs to the area (sector, triangle or rectangle) with parameter R.
 	 * @param x coordinate X
 	 * @param y coordinate Y
 	 * @param r parameter R
@@ -52,7 +52,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Transforms pixel coordinate X into mathematical coordinate X
+	 * Transforms pixel coordinate X into mathematical coordinate X.
 	 * @param x pixel coordinate X
 	 * @param cx pixel coordinate X for mathematical X = 0
 	 * @param scale number of pixels in mathematical distance = 1
@@ -63,7 +63,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Transforms pixel coordinate X into mathematical coordinate X
+	 * Transforms pixel coordinate X into mathematical coordinate X.
 	 * @param y pixel coordinate Y
 	 * @param cy pixel coordinate Y for mathematical Y = 0
 	 * @param scale number of pixels in mathematical distance = 1
@@ -74,7 +74,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Transforms mathematical coordinate X into pixel coordinate X
+	 * Transforms mathematical coordinate X into pixel coordinate X.
 	 * @param x mathematical coordinate X
 	 * @param cx pixel coordinate X for mathematical X = 0
 	 * @param scale number of pixels in mathematical distance = 1
@@ -85,7 +85,7 @@ public class Calculation {
 	}
 
 	/**
-	 * Transforms mathematical coordinate X into pixel coordinate X
+	 * Transforms mathematical coordinate X into pixel coordinate X.
 	 * @param y mathematical coordinate Y
 	 * @param cy pixel coordinate Y for mathematical Y = 0
 	 * @param scale number of pixels in mathematical distance = 1
