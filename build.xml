@@ -99,4 +99,7 @@
 			</classpath>
 		</javadoc>
 	</target>
+	<target name="alt">
+		<!-- not implemented -->
+	</target>
 </project>
