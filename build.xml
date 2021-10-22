@@ -1,17 +1,6 @@
 <?xml version="1.0"?>
 <project name="Lab3" default="test">
-	<property name="src.dir" location="src"/>
-	<property name="src.main.dir" location="${src.dir}/main/java"/>
-	<property name="src.test.dir" location="${src.dir}/test/java"/>
-	<property name="build.dir" location="build"/>
-	<property name="main.classes.dir" location="${build.dir}/main"/>
-	<property name="test.classes.dir" location="${build.dir}/test"/>
-	<property name="jar.dir" location="${build.dir}/jar"/>
-	<property name="main.lib.dir" location="${src.dir}/main/lib"/>
-	<property name="test.lib.dir" location="${src.dir}/test/lib"/>
-	<property name="javadoc.dir" location="${build.dir}/javadoc"/>
-	<property name="jar.file-path" location="${jar.dir}/${ant.project.name}.jar"/>
-	<property name="main-class" value="com.s284746.web.faces.Main"/>
+	<property file="build.properties"/>
 	<path id="main.classpath">
 		<fileset dir="${main.classes.dir}">
 			<include name="**/*.class"/>
@@ -55,6 +44,37 @@
 			</classpath>
 		</javac>
 	</target>
+	<target name="doc" depends="compile">
+		<javadoc destdir="${javadoc.dir}" useexternalfile="yes">
+			<sourcepath>
+				<pathelement location="${src.main.dir}"/>
+			</sourcepath>
+			<classpath>
+				<path refid="main.lib.classpath"/>
+			</classpath>
+		</javadoc>
+		<checksum todir="${build.dir}/checksum">
+			<path refid="main.classpath"/>
+		</checksum>
+		<checksum todir="${build.dir}/checksum" algorithm="sha-1">
+			<path refid="main.classpath"/>
+		</checksum>
+	</target>
+	<target name="unpack" depends="doc">
+		<unjar dest="${main.classes.dir}">
+			<path refid="main.lib.classpath"/>
+		</unjar>
+		<delete dir="${main.classes.dir}/META-INF"/>
+		<delete file="${main.classes.dir}/module-info.class"/>
+	</target>
+	<target name="build" depends="unpack">
+		<mkdir dir="${jar.dir}"/>
+		<jar destfile="${jar.file-path}" basedir="${main.classes.dir}">
+		    <manifest>
+		        <attribute name="Main-Class" value="${main-class}"/>
+		    </manifest>
+		</jar>
+	</target>
 	<target name="test" depends="build">
 		<junitlauncher printsummary="true" haltonfailure="true">
 			<classpath>
@@ -69,36 +89,11 @@
 			</testclasses>
 		</junitlauncher>
 	</target>
-	<target name="unpack" depends="compile">
-		<unjar dest="${main.classes.dir}">
-			<path refid="main.lib.classpath"/>
-		</unjar>
-		<delete dir="${main.classes.dir}/META-INF"/>
-		<delete file="${main.classes.dir}/module-info.class"/>
-	</target>
-	<target name="build" depends="unpack">
-	    <mkdir dir="${jar.dir}"/>
-	    <jar destfile="${jar.file-path}" basedir="${main.classes.dir}">
-	        <manifest>
-	            <attribute name="Main-Class" value="${main-class}"/>
-	        </manifest>
-	    </jar>
-	</target>
 	<!--
 	<target name="run" depends="build">
 	    <java jar="${jar.file-path}" fork="true"/>
 	</target>
 	-->
-	<target name="doc" depends="compile">
-		<javadoc destdir="${javadoc.dir}" useexternalfile="yes">
-			<sourcepath>
-				<pathelement location="${src.main.dir}"/>
-			</sourcepath>
-			<classpath>
-				<path refid="main.lib.classpath"/>
-			</classpath>
-		</javadoc>
-	</target>
 	<target name="alt">
 		<!-- not implemented -->
 	</target>

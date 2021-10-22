@@ -8,6 +8,9 @@ import com.s284746.web.faces.util.SQLProcessor;
  * Class for performing data deletion when 'Clear' button is pressed.
  */
 public class DataDeleter implements ActionListener {
+	/**
+	 * Currently logging user's ID.
+	 */
 	public static int userid = 0;
 
 	/**

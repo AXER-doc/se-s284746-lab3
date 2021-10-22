@@ -9,9 +9,21 @@ import java.io.Serializable;
 public class Result implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -1640265211557550086L;
+	/**
+	 * Stored coordinate X.
+	 */
 	private double x;
+	/**
+	 * Stored coordinate Y.
+	 */
 	private double y;
+	/**
+	 * Stored parameter R.
+	 */
 	private double r;
+	/**
+	 * Stored checking result.
+	 */
 	private boolean included;
 
 	/**

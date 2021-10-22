@@ -18,8 +18,17 @@ import java.sql.SQLException;
 public class FunctionBean implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Coordinate X entered by user.
+	 */
 	private double x;
+	/**
+	 * Coordinate Y entered by user.
+	 */
 	private double y;
+	/**
+	 * Parameter R entered by user.
+	 */
 	private double r;
 
 	/**

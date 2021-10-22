@@ -19,8 +19,13 @@ import java.util.List;
 public class TableBean implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Currently logging user's name.
+	 */
 	private String userName;
+	/**
+	 * Currently logging user's ID.
+	 */
 	private int userID;
 
 	/**
